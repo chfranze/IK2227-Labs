@@ -1,0 +1,6 @@
+# Configure IP Address towards server_1_2_1 and server_1_2_2
+ip address add 201.2.1.1/24 dev eth2
+ip address add 201.2.2.1/24 dev eth3
+
+# Start FRR
+systemctl start frr

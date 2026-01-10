@@ -1,0 +1,5 @@
+# Configure Reachable IP Address
+ip address add 201.2.1.2/24 dev eth0
+
+# Configure default route toward leaf_1_2
+ip route add default via 201.2.1.1 dev eth0

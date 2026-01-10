@@ -1,0 +1,5 @@
+# Configure Reachable IP Address
+ip address add 3.0.0.2/24 dev eth0
+
+# Configure default route toward as2r1
+ip route add default via 3.0.0.1 dev eth0

@@ -1,0 +1,32 @@
+# Configure Reachable IP Address
+ip address add 201.1.1.2/24 dev eth0
+
+# Configure default route toward leaf_1_1
+ip route add default via 201.1.1.1 dev eth0
+
+# Wait Kubernetes control plane startup
+kubectl api-versions &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl api-versions &> /dev/null; done
+
+# Start MetalLB
+kubectl apply -f /k8s/metallb-frr.yaml
+
+# Wait MetalLB controller startup
+kubectl wait -n metallb-system --for condition=ready pod --selector component=controller --timeout 24h &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl wait -n metallb-system --for condition=ready pod --selector component=controller --timeout 24h &> /dev/null; done
+
+# Apply MetalLB configuration
+kubectl apply -f /k8s/metallb-conf.yaml
+
+# Wait MetalLB speakers startup
+kubectl wait -n metallb-system --for condition=ready pod --selector component=speaker --timeout 24h &> /dev/null
+
+# Start NGINX Ingress Controller
+kubectl apply -f /k8s/ingress-nginx.yaml
+
+# Wait NGINX Ingress Controller startup
+kubectl wait -n ingress-nginx --for condition=ready pod --selector app.kubernetes.io/component=controller --timeout 24h &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl wait -n ingress-nginx --for condition=ready pod --selector app.kubernetes.io/component=controller --timeout 24h &> /dev/null; done
+
+# Apply PVs
+kubectl apply -f /k8s/pv.yaml

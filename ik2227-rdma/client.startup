@@ -1,0 +1,5 @@
+ip addr add 10.0.0.2/24 dev eth0
+
+# Creates the SoftROCE interface
+# Name is rxe0, the physical interface is eth0
+rdma link add rxe0 type rxe netdev eth0

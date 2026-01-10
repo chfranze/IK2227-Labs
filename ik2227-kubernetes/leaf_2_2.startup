@@ -1,0 +1,12 @@
+# Configure loopback
+ip address add 192.168.0.4/32 dev lo
+ip route add 192.168.0.4/32 dev lo
+
+# Configure IP addresses
+ip address add 10.0.2.2/30 dev eth2
+
+# Set default route towards dc_exit
+ip route add default via 10.0.2.1 dev eth2
+
+# Start FRR
+systemctl start frr
