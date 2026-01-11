@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: word-dply
+  namespace: word-ns
+spec:
+  selector:
+    matchLabels:
+      app: word
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: word
+    spec:
+      containers:
+        - name: word-container
+          image: ik2227/drow
+          ports:
+            - containerPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-dply
+  namespace: weather-ns
+spec:
+  selector:
+    matchLabels:
+      app: weather
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: weather
+    spec:
+      containers:
+        - name: weather-container
+          image: ik2227/weather
+          ports:
+            - containerPort: 5000

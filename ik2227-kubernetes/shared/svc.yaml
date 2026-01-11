@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: word
+  namespace: word-ns
+spec:
+  ports:
+    - port: 5001
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: word
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: worddb
+  namespace: word-ns
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app: worddb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather
+  namespace: weather-ns
+spec:
+  ports:
+    - port: 5001
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: weather
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weatherdb
+  namespace: weather-ns
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app: weatherdb
