@@ -1,0 +1,7 @@
+# Configure IP address
+ip address add 3.0.0.1/24 dev eth0
+# Create SoftRoCE interface
+rdma link add rxe2 type rxe netdev eth0
+
+# Start the RDMA server daemon in a screen session
+screen -dmS server /bin/bash -c -i "python3 /app/server.py rxe2 > /var/log/server.log 2>&1"

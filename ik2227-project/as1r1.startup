@@ -1,0 +1,7 @@
+# Configure IP addresses
+ip address add 10.0.1.1/30 dev eth0
+ip address add 10.1.1.1/30 dev eth1
+
+# Set routes to enter the DC
+ip route add 10.0.200.0/24 via 10.0.1.2 dev eth0
+ip route add 10.0.100.0/24 via 10.0.1.2 dev eth0

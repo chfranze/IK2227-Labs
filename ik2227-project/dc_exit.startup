@@ -1,0 +1,22 @@
+# Create VLAN interfaces
+ip link add link eth1 name eth1.800 type vlan id 800 
+ip link add link eth1 name eth1.900 type vlan id 900 
+
+# Enable interfaces
+ip link set up dev eth1.800
+ip link set up dev eth1.900
+
+# Configure IP addresses
+ip address add 10.0.1.2/30 dev eth0
+# These two are the default gateways of the VLANs
+ip address add 2.0.0.1/24 dev eth1.800
+ip address add 1.0.0.1/24 dev eth1.900
+
+# Add an aggregated route towards AS1, AS30, AS40, AS50, AS300
+ip route add 10.0.0.0/8 via 10.0.1.1 dev eth0
+
+# Required to NAT the lab packets for forwarding by the host network
+iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+
+# Start FRR
+systemctl start frr

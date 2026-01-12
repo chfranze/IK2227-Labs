@@ -1,0 +1,39 @@
+# Configure IP address
+ip address add 2.0.0.2/24 dev eth0
+# K8s will run in VXLAN, reduce the MTU of 50B
+ip link set dev eth0 mtu 1450
+
+# Set a default route, the gateway is dc_exit
+ip route add default via 2.0.0.1 dev eth0
+
+# Wait Kubernetes control plane startup
+kubectl api-versions &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl api-versions &> /dev/null; done
+
+# Add label to workers
+kubectl label nodes worker11 supports=rdma &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl label nodes worker11 supports=rdma &> /dev/null; done
+kubectl label nodes worker11 type=worker
+
+# Start MetalLB
+kubectl apply -f /k8s/metallb-frr.yaml
+
+# Wait MetalLB controller startup
+kubectl wait -n metallb-system --for condition=ready pod --selector component=controller --timeout 24h &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl wait -n metallb-system --for condition=ready pod --selector component=controller --timeout 24h &> /dev/null; done
+
+# Apply MetalLB configuration
+kubectl apply -f /k8s/metallb-conf.yaml
+
+# Wait MetalLB speakers startup
+kubectl wait -n metallb-system --for condition=ready pod --selector component=speaker --timeout 24h &> /dev/null
+
+# Start NGINX Ingress Controller
+kubectl apply -f /k8s/ingress-nginx.yaml
+
+# Wait NGINX Ingress Controller startup
+kubectl wait -n ingress-nginx --for condition=ready pod --selector app.kubernetes.io/component=controller --timeout 24h &> /dev/null
+while [[ $? != 0 ]]; do sleep 1; kubectl wait -n ingress-nginx --for condition=ready pod --selector app.kubernetes.io/component=controller --timeout 24h &> /dev/null; done
+
+# Apply the persistent volume
+kubectl apply -f /k8s/pv.yaml

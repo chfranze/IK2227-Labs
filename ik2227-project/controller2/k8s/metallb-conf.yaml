@@ -1,0 +1,35 @@
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: peering-21
+  namespace: metallb-system
+spec:
+  myASN: 65002
+  peerASN: 65003
+  peerAddress: 1.0.0.1
+  ebgpMultiHop: true
+  disableMP: true
+  nodeSelectors:
+  - matchExpressions:
+    - key: kubernetes.io/hostname
+      operator: In
+      values: [worker21]
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: pool
+  namespace: metallb-system
+spec:
+  avoidBuggyIPs: true
+  addresses:
+  - 10.0.100.0/24
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: bgp-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - pool

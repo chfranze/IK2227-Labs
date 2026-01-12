@@ -1,0 +1,11 @@
+# Configure IP address
+ip address add 2.0.0.3/24 dev eth0
+# K8s will run in VXLAN, reduce the MTU of 50B
+ip link set dev eth0 mtu 1450
+
+# Set a default route, the gateway is dc_exit
+ip route add default via 2.0.0.1 dev eth0
+
+# Install the RDMA package on the fly
+apk add --no-cache iproute2 iproute2-rdma
+while [[ $? != 0 ]]; do sleep 1; apk add --no-cache -U iproute2 iproute2-rdma; done
