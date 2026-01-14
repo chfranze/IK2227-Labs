@@ -150,10 +150,24 @@ def main() -> None:
             byte_gid = ipaddress.ip_address(local_gid.gid).packed
             
             # TODO 1: Let's prepare our connection data into the struct
+            local_con_obj = QpConnectionData()
+            local_con_obj.qp_num = qp.qp_num
+            local_con_obj.rkey = mr.rkey
+            local_con_obj.addr = mr.buf
+            local_con_obj.gid[:] = byte_gid
+
             # TODO 1: Exchange: server sends its info first, then receives the client's info
+            conn.sendall(bytes(local_con_obj))
 
             # TODO 1: Now receive
+            remote_data = recvn(conn, ctypes.sizeof(QpConnectionData))
+            if len(remote_data) != ctypes.sizeof(QpConnectionData):
+                print("Error receiving connection info from client", file=sys.stderr)
+                #conn.close()
+                sys.exit(1)
+
             # TODO 1: Deserialize
+            remote_con = QpConnectionData.from_buffer_copy(remote_data)
 
             # We received remote information, and we sent them (so the remote can proceed in RTR too)
             # Let's prepare the QP attributes to move in RTR
@@ -214,9 +228,7 @@ def main() -> None:
 
             # TODO 2: Post the RECV on the Receive Queue
             # TODO 2: Prepare the scatter/gather elements data structure
-            
             # TODO 2: Prepare the WR to post on the Receive Queue
-            
             # TODO 2: Post the Work Request on the Receive Queue!
 
             try:
