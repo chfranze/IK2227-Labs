@@ -228,8 +228,24 @@ def main() -> None:
 
             # TODO 2: Post the RECV on the Receive Queue
             # TODO 2: Prepare the scatter/gather elements data structure
+
+            sge = pyverbs.wr.SGE(
+                addr=mr.buf,            # start from beginning of MR
+                length=BUFFER_SIZE,     # we don't know incoming size
+                lkey=mr.lkey
+            )
+
             # TODO 2: Prepare the WR to post on the Receive Queue
+
+            recv_wr = pyverbs.wr.RecvWR(
+                wr_id=1,                # required WR ID
+                sg=[sge],
+                num_sge=1
+            )
+            
             # TODO 2: Post the Work Request on the Receive Queue!
+
+            qp.post_recv(recv_wr)
 
             try:
                 cq_thread.join()

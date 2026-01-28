@@ -241,9 +241,32 @@ def main() -> None:
             sge_buff = mr.buf
             # TODO: Prepare the scatter/gather elements data structure
 
+            sge_list = []
+
+            offset = 0
+            for book, book_len in books.items():
+                sge = pyverbs.wr.SGE(
+                    addr=sge_buff + offset,   # point to start of title
+                    length=book_len,          # ONLY the title (+ '\0')
+                    lkey=mr.lkey
+                )
+                sge_list.append(sge)
+
+                # move offset: title + padding
+                offset += book_len + PADDING
+
             # TODO: Prepare the WR to post on the Send Queue
 
+            send_wr = pyverbs.wr.SendWR(
+                wr_id=1,                      # required WR ID
+                sg=sge_list,
+                num_sge=len(sge_list),
+                opcode=IBV_WR_SEND            # two-sided SEND
+            )
+
             # TODO: Post the Work Request on the Send Queue!
+
+            qp.post_send(send_wr)
 
             try:
                 cq_thread.join()
