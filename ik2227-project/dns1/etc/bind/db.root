@@ -1,0 +1,16 @@
+$TTL 60000
+
+@   IN  SOA ROOT-SERVER. root.ROOT-SERVER. (
+        2025022801 ; serial
+        28         ; refresh
+        14         ; retry
+        3600000    ; expire
+        0          ; negative cache ttl
+)
+
+@               IN  NS  ROOT-SERVER.
+ROOT-SERVER.    IN  A   8.8.8.8
+google.com.     IN  A   8.8.4.4
+
+clustera.com.  IN  A   10.0.200.1
+clusterb.com.  IN  A   10.0.100.1

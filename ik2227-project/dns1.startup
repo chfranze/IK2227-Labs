@@ -1,0 +1,10 @@
+ip address add 10.30.40.2/24 dev lo
+
+ip address add 10.30.0.2/30 dev eth0
+ip route add default via 10.30.0.1 dev eth0
+
+systemctl start bind9
+systemctl start frr
+
+chmod +x /healthcheck.sh
+screen -dmS healthcheck /bin/bash -c "/healthcheck.sh"
