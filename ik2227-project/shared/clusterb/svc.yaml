@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm
+  namespace: llm-ns
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: llm

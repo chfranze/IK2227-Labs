@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-dply
+  namespace: llm-ns
+spec:
+  selector:
+    matchLabels:
+      app: llm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: llm
+    spec:
+      containers:
+        - name: llm-container
+          image: ik2227/llama2
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LLAMA_SYS_PROMPT
+              value: "Once upon a time,"
+          volumeMounts:
+            - name: llm-storage
+              mountPath: /data
+      volumes:
+        - name: llm-storage
+          persistentVolumeClaim:
+            claimName: llm-pvc
