@@ -502,8 +502,15 @@ spec:
           name: webhook-cert
           readOnly: true
       dnsPolicy: ClusterFirst
-      nodeSelector:
-        kubernetes.io/os: linux
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - worker21
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:
@@ -558,7 +565,15 @@ spec:
           runAsUser: 65532
           seccompProfile:
             type: RuntimeDefault
-      nodeSelector: { kubernetes.io/os: "linux", type: "worker" }
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - worker21
       restartPolicy: OnFailure
       serviceAccountName: ingress-nginx-admission
 ---
@@ -611,8 +626,15 @@ spec:
           runAsUser: 65532
           seccompProfile:
             type: RuntimeDefault
-      nodeSelector:
-        kubernetes.io/os: linux
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - worker21
       restartPolicy: OnFailure
       serviceAccountName: ingress-nginx-admission
 ---
