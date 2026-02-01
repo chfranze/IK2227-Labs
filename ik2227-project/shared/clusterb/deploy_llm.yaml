@@ -13,6 +13,7 @@ spec:
       labels:
         app: llm
     spec:
+      restartPolicy: Always # The microservice should have only one replica, you must ensure the rescheduling of the Pod in case of failure
       containers:
         - name: llm-container
           image: ik2227/llama2
