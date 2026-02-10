@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-dply
+  namespace: llm-ns
+spec:
+  selector:
+    matchLabels:
+      app: llm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: llm
+    spec:
+      restartPolicy: Always # The microservice should have only one replica, you must ensure the rescheduling of the Pod in case of failure
+      containers:
+        - name: llm-container
+          image: ik2227/llama2
+          securityContext:
+            privileged: true
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LLAMA_SYS_PROMPT
+              value: "Long ago, in a faraway land,"
+            - name: ENABLE_RDMA
+              value: "true"
+            - name: RXE_IFACE
+              value: rxe0
+          volumeMounts:
+            - name: llm-storage
+              mountPath: /data
+      volumes:
+        - name: roce-client
+          hostPath:
+            path: /shared/roce
+        - name: ib
+          hostPath:
+            path: /dev/infiniband
+      nodeSelector:
+        supports: rdma
