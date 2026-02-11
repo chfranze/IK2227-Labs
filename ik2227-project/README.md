@@ -130,3 +130,7 @@ Troubleshooting
 check where ingress-nginx containers is running:
 
 kubectl -n ingress-nginx get pods -o wide
+
+# Check ingress controller
+
+kubectl -n ingress-nginx logs ingress-nginx-controller-5768b6c496-m69xv

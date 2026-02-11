@@ -29,8 +29,10 @@ spec:
             - name: RXE_IFACE
               value: rxe0
           volumeMounts:
-            - name: llm-storage
-              mountPath: /data
+            - mountPath: /data/roce
+              name: roce-client
+            - mountPath: /dev/infiniband
+              name: ib
       volumes:
         - name: roce-client
           hostPath:
