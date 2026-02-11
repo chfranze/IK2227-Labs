@@ -64,6 +64,18 @@ kubectl apply -f /shared/clusterb/deploy_llm.yaml
 Verification
 kubectl -n llm-ns get deploy -o wide
 
+# Check all pods in the namespace:
+kubectl -n llm-ns get pods -o wide
+
+# Get pod logs:
+kubectl -n llm-ns logs -f <pod-name>
+
+# Deleate a pod:
+kubectl -n llm-ns delete pod <pod-name>
+
+# Force the deployment to restart:
+kubectl -n llm-ns rollout restart deployment llm-dply
+
 
 Inspect the running Pods:
 
