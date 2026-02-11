@@ -1,7 +1,12 @@
 # Configure IP address
 ip address add 2.0.0.3/24 dev eth0
+ip address add 3.0.0.3/24 dev eth1
+
 # K8s will run in VXLAN, reduce the MTU of 50B
 ip link set dev eth0 mtu 1450
+
+# Name is rxe1, the physical interface is eth1
+rdma link add rxe1 type rxe netdev eth1
 
 # Set a default route, the gateway is dc_exit
 ip route add default via 2.0.0.1 dev eth0
