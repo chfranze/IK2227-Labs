@@ -1,0 +1,490 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5" pages="10">
+  <diagram name="step 1" id="s5ajShwlu0gM7yIJPW26">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="COYjtZSOaRzWZo9KWKJY-2" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color: #dcdcaa;&quot;&gt;read_weights&lt;/span&gt;(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;iface&lt;/span&gt;: &lt;span style=&quot;color: #4ec9b0;&quot;&gt;str&lt;/span&gt;) -&amp;gt; &lt;span style=&quot;color: #4ec9b0;&quot;&gt;bytes&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 1: Verify RDMA device exists&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Searching for RDMA device: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;iface&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; devices_list &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; rdma_get_devices()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; found &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;False&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;for&lt;/span&gt; device &lt;span style=&quot;color: #c586c0;&quot;&gt;in&lt;/span&gt; devices_list:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; device_name_str &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; device.name.decode(&lt;span style=&quot;color: #ce9178;&quot;&gt;&#39;utf-8&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Found RDMA device: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;device_name_str&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; device_name_str &lt;span style=&quot;color: #d4d4d4;&quot;&gt;==&lt;/span&gt; iface:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; found &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;True&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;break&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;not&lt;/span&gt; found:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;raise&lt;/span&gt; &lt;span style=&quot;color: #4ec9b0;&quot;&gt;Exception&lt;/span&gt;(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Interface &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;iface&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt; not found.&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="490" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="COYjtZSOaRzWZo9KWKJY-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="47" y="370" width="476" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="COYjtZSOaRzWZo9KWKJY-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Step 1&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Calls &lt;b&gt;rdma_get_devices()&lt;/b&gt; and checks for &lt;i&gt;SoftRoCE &lt;/i&gt;interfaces&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;If not found raises exception&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="380" width="440" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="PHbkU25_5DN0gPNGcJ3g-2" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="110" y="790" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PHbkU25_5DN0gPNGcJ3g-3" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="570" y="790" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PHbkU25_5DN0gPNGcJ3g-4" value="Humm do i have a RDMA&lt;div&gt;interface?&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="940" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="z8d8ZkgVCtQ8bCzOWSp2-1" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="980" as="sourcePoint" />
+            <mxPoint x="350" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z8d8ZkgVCtQ8bCzOWSp2-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="1050" as="sourcePoint" />
+            <mxPoint x="350" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z8d8ZkgVCtQ8bCzOWSp2-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1070" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="z8d8ZkgVCtQ8bCzOWSp2-4" value="Throw error" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="384" y="1085" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="z8d8ZkgVCtQ8bCzOWSp2-5" value="Nice! save it to:&amp;nbsp;&lt;span style=&quot;background-color: rgb(31, 31, 31); color: rgb(204, 204, 204); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; white-space: pre;&quot;&gt;device_name_str&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="910" width="190" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="GsBc3__HxErjCMOnhY_m" name="step 2">
+    <mxGraphModel dx="2253" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5W9wIQO2quBlV61NH79s-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 2: Open TCP connection to server&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; sock &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; socket.socket(socket.AF_INET, socket.SOCK_STREAM)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;try&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Connecting to llama_weights server at 3.0.0.1:&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;PORT&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sock.connect((&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;3.0.0.1&quot;&lt;/span&gt;, PORT))&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;TCP connection established&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;except&lt;/span&gt; &lt;span style=&quot;color: #4ec9b0;&quot;&gt;Exception&lt;/span&gt; &lt;span style=&quot;color: #c586c0;&quot;&gt;as&lt;/span&gt; ex:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.error(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Error connecting to server: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;ex&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sock.close()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;raise&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="620" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="5W9wIQO2quBlV61NH79s-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="330" width="530" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="5W9wIQO2quBlV61NH79s-3" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Step 2&lt;/h1&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Connects to &lt;b style=&quot;&quot;&gt;3.0.0.1:12345 via TCP&lt;/b&gt;. This socket is only used to exchange RDMA metadata&lt;/font&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="500" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TrhJ5LOb1djgZK70uLhL-1" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="180" y="830" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TrhJ5LOb1djgZK70uLhL-2" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="640" y="830" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TrhJ5LOb1djgZK70uLhL-3" value="Humm lets set up a TCP connection to my firend so we can&amp;nbsp;&lt;div&gt;echange information so we can setup RDMA :)&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-240" y="580" width="460" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="l2DhYHi_4H-vNfMxJ3oo-1" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=8;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="810" as="sourcePoint" />
+            <mxPoint x="650" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2DhYHi_4H-vNfMxJ3oo-2" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;1.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="610" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l2DhYHi_4H-vNfMxJ3oo-3" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="760" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l2DhYHi_4H-vNfMxJ3oo-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="830" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l2DhYHi_4H-vNfMxJ3oo-4" value="Setup TCP connection to server not using the RDAM interface found in step 1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="845" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Lo4FCCA6Xo7szEj5DgnB-1" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="720" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Lo4FCCA6Xo7szEj5DgnB-2" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="770" width="40" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="LpRd0GsTN7nKk29ndOHd" name="step 3">
+    <mxGraphModel dx="2505" dy="2168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 3: Create RDMA context and resources&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;with&lt;/span&gt; pyverbs.device.Context(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;iface) &lt;span style=&quot;color: #c586c0;&quot;&gt;as&lt;/span&gt; ctx:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;RDMA context opened on &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;iface&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Create Protection Domain&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; pd &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.pd.PD(ctx)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Protection domain created&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Register memory region for local write access&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.mr.MR(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; pd, &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; BUFFER_SIZE, &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_ACCESS_LOCAL_WRITE &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_ACCESS_REMOTE_READ&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Memory registered: addr=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;mr.buf&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, rkey=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;mr.rkey&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, length=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;BUFFER_SIZE&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Create the Completion Queue&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# The capacity is 10 CQE&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; cq &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.cq.CQ(ctx, &lt;span style=&quot;color: #b5cea8;&quot;&gt;10&lt;/span&gt;, &lt;span style=&quot;color: #569cd6;&quot;&gt;None&lt;/span&gt;, &lt;span style=&quot;color: #569cd6;&quot;&gt;None&lt;/span&gt;, &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Completion Queue created&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Configure and initialize the Queue Pair&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp_init_attr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.qp.QPInitAttr(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;qp_type&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_QPT_RC, &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Type of QP (RC=Reliable Connection)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;scq&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;cq, &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# CQ to associate with the Send Queue&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;rcq&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;cq, &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# CQ to associate with the Receive Queue&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;cap&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;pyverbs.qp.QPCap(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;max_send_wr&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;8192&lt;/span&gt;, &lt;span style=&quot;color: #6a9955;&quot;&gt;# Max num of outstanding WRs that can be posted to the Send Queue (varies per RNIC)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;max_recv_wr&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;8192&lt;/span&gt;, &lt;span style=&quot;color: #6a9955;&quot;&gt;# Max num of outstanding WRs that can be posted to the Receive Queue (varies per RNIC)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;max_send_sge&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;32&lt;/span&gt;, &amp;nbsp;&lt;span style=&quot;color: #6a9955;&quot;&gt;# Max num of scatter/gather elements in any WR that can be posted to the Send Queue (varies per RNIC)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;max_recv_sge&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;32&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Max num of scatter/gather elements in any WR that can be posted to the Receive Queue (varies per RNIC)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Create the QP&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.qp.QP(pd, qp_init_attr)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;QP created with qp_num=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;qp.qp_num&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="1140" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="530" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-3" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 3.2&lt;/h1&gt;&lt;p&gt;1. Creates a Protection Domain&lt;/p&gt;&lt;p&gt;2. registers a memeroy region = BUFFER_SIZE and configures it with LOCAL_WRITE and REMOTE_READ. Becuse we are going to read LLAMA weight from server to this MR&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="95" width="290" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-4" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;PORT &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;12345&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;BUFFER_SIZE &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;60816028&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="827" y="95" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="605" y="-180" width="400" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-6" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 3.1&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Creates a RDMA context: A structure representing the opened RDMA device, created during the initalization pthase of RDMA application&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="625" y="-160" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-7" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" target="rjWUCo2-bhL27LLFIk7v-5">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="449" y="65" as="sourcePoint" />
+            <mxPoint x="420" y="-100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-8" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="316" y="151" as="sourcePoint" />
+            <mxPoint x="539" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-9" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="283" y="230" as="sourcePoint" />
+            <mxPoint x="539" y="194" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-10" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="340" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-11" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 3.3&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Creates a Completion Queue with capacity 10. The CQ is used for the NIC to write &lt;b style=&quot;&quot;&gt;CQE&lt;/b&gt;&#39;s to leet the CPU know when WR&#39;s are done.&amp;nbsp;&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;CQ is a shared buffer betwwen the NIC and CPI&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="340" width="350" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rjWUCo2-bhL27LLFIk7v-12" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="rjWUCo2-bhL27LLFIk7v-10">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="446" y="401" as="sourcePoint" />
+            <mxPoint x="-30" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="605" y="650" width="490" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 3.4&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Create a Queue Pair. The Queue paor os the fundamental object that lets you talk directly to the NIC hardware bypassin the kernel&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;This create two queue:&amp;nbsp;&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;SQ (Send Queue)&lt;/b&gt; - Post work requests here and NIC reads and executes them&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;RQ (Receive Queue)&lt;/b&gt; - Post buffers here and NIC writes incomming data into them&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="625" y="670" width="445" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="510" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-4" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;Defines how mutch can be in the queues&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="520" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-80" y="790" width="330" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-7" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 3.5&lt;/h1&gt;&lt;p&gt;Creates the Queue Pair object and registers it with the kernel and the NIC&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="790" width="320" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="WWpYAckt_C0c_vEcJ-f6-6" target="WWpYAckt_C0c_vEcJ-f6-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-9" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=default;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="40" y="780" as="sourcePoint" />
+            <mxPoint x="100" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-10" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=default;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="100" y="560" as="sourcePoint" />
+            <mxPoint x="150" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WWpYAckt_C0c_vEcJ-f6-11" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="414" y="480" as="sourcePoint" />
+            <mxPoint x="597" y="643" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4kPQpE3DEUSKmlIzZXe--1" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1130" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="4kPQpE3DEUSKmlIzZXe--2" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="710" y="1130" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="4kPQpE3DEUSKmlIzZXe--9" value="Humm now i need to prepare some stuff for the RDMA like a memory region&amp;nbsp;&lt;div&gt;where to get the LLAMA weight. I also need to setup the Queue&amp;nbsp;&lt;/div&gt;&lt;div&gt;Pair Stuff so i can send and receive RDAM&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="960" width="580" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4kPQpE3DEUSKmlIzZXe--10" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="1120" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4kPQpE3DEUSKmlIzZXe--11" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="1070" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="W4YHR9SrurWep2un6iDY-1" value="You want stuff?&lt;div&gt;🚬&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="777.5" y="1070" width="140" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="o2BuE4EraNhIutrbJZix" name="step 4">
+    <mxGraphModel dx="2864" dy="1213" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="P9bi-_rhtcl3vKYcoez6-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 4: Transition QP to INIT state&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; init_attr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.qp.QPAttr(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;qp_state&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_QPS_INIT, &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;port_num&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; init_attr.pkey_index &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Set the default partition keys table for this QP&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; init_attr.qp_access_flags &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; IBV_ACCESS_REMOTE_READ &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_ACCESS_LOCAL_WRITE&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Move the QP in the INIT state&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp.modify(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; init_attr,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_QP_STATE &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_PKEY_INDEX &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_PORT &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_ACCESS_FLAGS&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;QP moved to INIT state&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="54" y="190" width="720" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="380" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 4.1&lt;/h1&gt;&lt;p&gt;Modifies the QP into the &lt;b&gt;INIT state&lt;/b&gt; and sets the port number (physical interface number, a host can have multiple NIC&#39;s this used fopr selecting one of them)&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="20" width="350" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-3" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="170" y="210" as="sourcePoint" />
+            <mxPoint x="170" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-4" value="Some more random shit changes that is from the tamplate&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-300" y="290" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-5" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-30" y="320" as="sourcePoint" />
+            <mxPoint x="130" y="319.65999999999997" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="90" y="319.65999999999997" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-270" y="370" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-7" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;Only allow REMOTE_READ and LOCAL_WRITE for this QP&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-250" y="370" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-9" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-30" y="396" as="sourcePoint" />
+            <mxPoint x="150" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-11" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-180" y="520" width="410" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-12" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 4.2&lt;/h1&gt;&lt;p&gt;Now actually apply it to the QP using the thins we have sett in the init_attr and we also need to specify that we ant to update the following 4 things we are giving the QP&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="525" width="370" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-TkcljL2Qb3udQo1pxAD-13" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="10" y="510" as="sourcePoint" />
+            <mxPoint x="140" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-1" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="20" y="840" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-2" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="480" y="840" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-3" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="830" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-4" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="800" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-5" value="What&#39;s taking you so long?" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="547.5" y="780" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5cYkKscwbje_Kqqigbec-6" value="Okey, now i have all of that lets apply that to the NIC :=)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-460" y="650" width="490" height="170" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ZbnfyYdL9FML3mSVTDIO" name="step 5">
+    <mxGraphModel dx="2505" dy="2168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ti91GKOi3iT318Aw40HS-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 5: Exchange connection information with server&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Receive server info first&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; remote_data &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; recvn(sock, ctypes.sizeof(QpConnectionData))&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #dcdcaa;&quot;&gt;len&lt;/span&gt;(remote_data) &lt;span style=&quot;color: #d4d4d4;&quot;&gt;!=&lt;/span&gt; ctypes.sizeof(QpConnectionData):&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;raise&lt;/span&gt; &lt;span style=&quot;color: #4ec9b0;&quot;&gt;Exception&lt;/span&gt;(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Failed to receive complete server connection data&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; remote &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; QpConnectionData.from_buffer_copy(remote_data)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Received server info: qp_num=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;remote.qp_num&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, rkey=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;remote.rkey&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, &quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;addr=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;remote.addr&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, gid=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color: #4ec9b0;&quot;&gt;bytes&lt;/span&gt;(remote.gid).hex()&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Get local GID&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_gid &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; ctx.query_gid(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;port_num&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;index&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; byte_gid &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; ipaddress.ip_address(local_gid.gid).packed&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Local GID: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;ipaddress.ip_address(local_gid.gid).exploded&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Server GID: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;ipaddress.ip_address(&lt;span style=&quot;color: #4ec9b0;&quot;&gt;bytes&lt;/span&gt;(remote.gid)).exploded&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Send client info to server&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_con_obj &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; QpConnectionData()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_con_obj.qp_num &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; qp.qp_num&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_con_obj.rkey &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; mr.rkey&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_con_obj.addr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; mr.buf&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; local_con_obj.gid[:] &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; byte_gid&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sock.sendall(&lt;span style=&quot;color: #4ec9b0;&quot;&gt;bytes&lt;/span&gt;(local_con_obj))&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Client connection info sent&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="44" y="110" width="740" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="sFEbczWLmdTICFaFM-p9-1" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="160" y="860" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="sFEbczWLmdTICFaFM-p9-2" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="620" y="860" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="-90" width="500" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 5.1&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Server sends its QP number, remote key, buffer address, and GID so the client knwos where to read from&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="-80" width="490" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-3" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="278" y="165" as="sourcePoint" />
+            <mxPoint x="330" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-450" y="20" width="380" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 5.2&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Client deserialises QpConnectionData now it knows &lt;b&gt;qp_num, rkey, addr, gid&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-430" y="25" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-6" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1" target="U6VwuCCli1qXgkCHvHr3-4">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="127" y="256" as="sourcePoint" />
+            <mxPoint x="-170" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-455" y="290" width="390" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-8" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 5.3&lt;/h1&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Now the client serialises its own QpConnectionData and gets: local QP num, rkey, buf, add, GID and sends that data to the server via &lt;b&gt;TCP becuse it uses the sock&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-440" y="290" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-9" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-65" y="390" as="sourcePoint" />
+            <mxPoint x="126" y="549" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-10" value="Here bro take this QP information&amp;nbsp;&lt;div&gt;where to get the good stuff ;)&amp;nbsp;&lt;/div&gt;&lt;div&gt;over TCP&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="720" width="270" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-12" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="860" as="sourcePoint" />
+            <mxPoint x="250" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-13" value="Oh thanks!&lt;div&gt;I can send over my information also&amp;nbsp;&lt;/div&gt;&lt;div&gt;using the TCP socet we have&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-220" y="810" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="U6VwuCCli1qXgkCHvHr3-14" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="910" as="sourcePoint" />
+            <mxPoint x="580" y="910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="n28_DIjaNkiTk7YnQrAu" name="step 6">
+    <mxGraphModel dx="2505" dy="2168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hCSvyHogiiYeVDdkBd2l-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 6: Transition QP to RTR (Ready-To-Receive)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.qp.QPAttr(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;qp_state&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_QPS_RTR, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;path_mtu&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_MTU_1024)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr.dest_qp_num &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; remote.qp_num&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr.rq_psn &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr.max_dest_rd_atomic &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr.min_rnr_timer &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;31&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; remote_gid_str &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; ipaddress.ip_address(&lt;span style=&quot;color: #4ec9b0;&quot;&gt;bytes&lt;/span&gt;(remote.gid)).exploded&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; gr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.addr.GlobalRoute(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;dgid&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;pyverbs.addr.GID(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;val&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;remote_gid_str),&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;sgid_index&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr.ah_attr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.addr.AHAttr(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;gr&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;gr, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;is_global&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;port_num&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp.modify(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rtr_attr,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_QP_STATE &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_PATH_MTU &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_DEST_QPN &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_RQ_PSN &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_QP_MAX_DEST_RD_ATOMIC &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_MIN_RNR_TIMER &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_AV&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;QP moved to RTR&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="720" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-1" value="Client" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="50" y="730" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-2" value="Server" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="510" y="730" width="78.89" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-400" y="-10" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-8" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;step 6.1&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Plugs in the remote QP number, sets path MTU, PSN=0, configures the Address Handle with the server&#39;s GID.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-380" width="270" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-330" y="290" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-10" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;step 6.2&lt;/h1&gt;&lt;p&gt;The QP can now accept incomming packets&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-320" y="305" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-11" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-90" y="80" as="sourcePoint" />
+            <mxPoint x="85" y="194" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-12" value="" style="shape=xor;whiteSpace=wrap;html=1;rotation=-180;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="100" y="110" width="20" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="EaprGHo8A456piZV5BTo-13" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#e1d5e7;strokeColor=#9673a6;" edge="1" parent="1" source="EaprGHo8A456piZV5BTo-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="350" as="sourcePoint" />
+            <mxPoint x="140" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="7k1ZAXPcLHQdNtl2pn7-" name="step 7">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YHumX3VL1S7lTBfD3jKH-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 7: Transition QP to RTS (Ready-To-Send)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.qp.QPAttr(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;qp_state&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_QPS_RTS)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr.sq_psn &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr.timeout &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;14&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr.retry_cnt &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;7&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr.rnr_retry &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;7&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr.max_rd_atomic &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp.modify(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; rts_attr,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_QP_STATE &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_TIMEOUT &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_RETRY_CNT &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; IBV_QP_RNR_RETRY &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_SQ_PSN &lt;span style=&quot;color: #d4d4d4;&quot;&gt;|&lt;/span&gt; IBV_QP_MAX_QP_RD_ATOMIC&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;QP moved to RTS - connection established!&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="680" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="PdJkEBBXyWfaIeDI-VPn-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="10" width="360" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="PdJkEBBXyWfaIeDI-VPn-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;step 7&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;Sets retry counts, timeouts and PSN. The QP is now fully active. It can both send and recive. RDMA connection is live&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="15" width="350" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="PdJkEBBXyWfaIeDI-VPn-3" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="126" y="253" as="sourcePoint" />
+            <mxPoint x="101" y="143" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="vGrVknTRHHQFT5YGlXTW" name="step 8">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8g4IYV7ZJDNDqB0ee_sF-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 8: Start CQ polling thread&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #569cd6;&quot;&gt;global&lt;/span&gt; keep_polling&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; keep_polling &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;True&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; poller &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; threading.Thread(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;poll_cq, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;args&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;(cq, mr))&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; poller.start()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQ polling thread started&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="230" width="690" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="8g4IYV7ZJDNDqB0ee_sF-2" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color: #dcdcaa;&quot;&gt;poll_cq&lt;/span&gt;(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;cq&lt;/span&gt;: pyverbs.cq.CQ, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;mr&lt;/span&gt;: pyverbs.mr.MR) -&amp;gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;None&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #569cd6;&quot;&gt;global&lt;/span&gt; keep_polling&lt;/div&gt;&lt;br&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQ poller started&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;while&lt;/span&gt; keep_polling:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; wc_num, wc_list &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; cq.poll(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;num_entries&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; wc_num &lt;span style=&quot;color: #d4d4d4;&quot;&gt;==&lt;/span&gt; &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.debug(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQ poll: no completions yet&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;else&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQ poll: &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;wc_num&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt; completions&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;for&lt;/span&gt; wc &lt;span style=&quot;color: #c586c0;&quot;&gt;in&lt;/span&gt; wc_list:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQE: wr_id=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;wc.wr_id&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, status=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;wc.status&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; wc.wr_id &lt;span style=&quot;color: #d4d4d4;&quot;&gt;==&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;0x&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;dead&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;RDMA READ completed!&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;if&lt;/span&gt; callback &lt;span style=&quot;color: #569cd6;&quot;&gt;is&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;not&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;None&lt;/span&gt;:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; callback(mr.read(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;length&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;BUFFER_SIZE, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;offset&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;))&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; keep_polling &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #569cd6;&quot;&gt;False&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; time.sleep(&lt;span style=&quot;color: #b5cea8;&quot;&gt;0.01&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;CQ poller exiting&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="490" width="510" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="8g4IYV7ZJDNDqB0ee_sF-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="10" width="430" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="8g4IYV7ZJDNDqB0ee_sF-4" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;step 8.1&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Spawns a backround thread that busy-pools thje CQ.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;When it sees a CQE with wr_id=0xdead, it knows the READ is done&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="25" width="430" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NhLzQDhiLQ7w2x7IKi0l-2" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.144;entryY=0.98;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.096;exitY=0.019;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="8g4IYV7ZJDNDqB0ee_sF-1" target="8g4IYV7ZJDNDqB0ee_sF-3">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-60" y="280" as="sourcePoint" />
+            <mxPoint x="40" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5HAmc72mO3piuGq2WDk1" name="step 9">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VOhiVq06H-3dQLElYBja-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 9: Post RDMA READ request&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sge &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.wr.SGE(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;addr&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #4ec9b0;&quot;&gt;int&lt;/span&gt;(mr.buf),&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;length&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;BUFFER_SIZE,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;lkey&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;mr.lkey&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; wr &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; pyverbs.wr.SendWR(&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;wr_id&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;0x&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;dead&lt;/span&gt;,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;sg&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;[sge],&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;num_sge&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #b5cea8;&quot;&gt;1&lt;/span&gt;,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #9cdcfe;&quot;&gt;opcode&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;IBV_WR_RDMA_READ&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; )&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Set remote memory address and key&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; wr.set_wr_rdma(&lt;span style=&quot;color: #9cdcfe;&quot;&gt;rkey&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;remote.rkey, &lt;span style=&quot;color: #9cdcfe;&quot;&gt;addr&lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt;remote.addr)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Posting RDMA READ: remote_addr=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;remote.addr&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, rkey=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;remote.rkey&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;, &quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;length=&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;BUFFER_SIZE&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; qp.post_send(wr)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;RDMA READ posted, waiting for completion...&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="34" y="210" width="760" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="VOhiVq06H-3dQLElYBja-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="34" y="20" width="376" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VOhiVq06H-3dQLElYBja-3" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;step 9&amp;nbsp;&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Posts IBV_WR_RDMA_READ WR with wr_id=0xdead. SGE points to local MR buffer (58 MB) WR targets remote.addr + remote.rkey&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="360" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="TbwkZvgeunOOmbXrt5Tp" name="step 10-11">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0Lh-KS1YsDsQRvgHlWZL-1" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 10: Wait for completion&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; poller.join()&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;RDMA READ operation completed successfully&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="124" y="250" width="580" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="0Lh-KS1YsDsQRvgHlWZL-2" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #6a9955;&quot;&gt;# Step 11: Read and return the weights from local memory&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; weights &lt;span style=&quot;color: #d4d4d4;&quot;&gt;=&lt;/span&gt; mr.read(BUFFER_SIZE, &lt;span style=&quot;color: #b5cea8;&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; logging.info(&lt;span style=&quot;color: #569cd6;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot;Read &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;len&lt;/span&gt;(weights)&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt; bytes from memory region&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #c586c0;&quot;&gt;return&lt;/span&gt; weights&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="124" y="450" width="580" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="0Lh-KS1YsDsQRvgHlWZL-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="40" width="470" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="0Lh-KS1YsDsQRvgHlWZL-4" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;step 10&amp;nbsp;&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Poller thread sees wr_id=0xdead in the CQ, sets keep_polling=False, optionally fires callback(data). Main thread unblocks form poller.join() and calls mr.read(58MB, 0) to return raw bytes. Resources are cleand up.&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="50" width="440" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

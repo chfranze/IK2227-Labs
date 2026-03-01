@@ -33,7 +33,7 @@ kubectl get namespaces
 
 3. Deploy PersistentVolumeClaim (Cluster A)
 
-Deploy the PVC used to access the shared LLM weights:
+Deploy the PVC used to access the shared LLM weights: (not needed if using RDMA)
 
 kubectl apply -f /shared/clustera/pvc.yaml
 or
@@ -57,9 +57,13 @@ kubectl -n llm-ns get svc -o wide
 
 Create the Deployment for the LLM microservice:
 
-kubectl apply -f /shared/clustera/deploy_llm.yaml
+kubectl apply -f /shared/clustera/deploy_llm.yaml - old
 or
-kubectl apply -f /shared/clusterb/deploy_llm.yaml
+kubectl apply -f /shared/clusterb/deploy_llm.yaml - old
+
+kubectl apply -f /shared/clustera/deploy_llm_rdma.yaml
+or
+kubectl apply -f /shared/clusterb/deploy_llm_rdma.yaml
 
 Verification
 kubectl -n llm-ns get deploy -o wide
@@ -134,3 +138,18 @@ kubectl -n ingress-nginx get pods -o wide
 # Check ingress controller
 
 kubectl -n ingress-nginx logs ingress-nginx-controller-5768b6c496-m69xv
+
+
+# Network troubleshooting / verefication commands:
+
+Examaple show BGP routing table for core_1_1:
+
+show ip bgp 
+
+l2 evpn table:
+
+show bgp l2vpn evpn 
+
+On leafs show the evpn mac table:
+
+show evpn mac vni all (don't be blind and there are two fields, one for each VNI)
