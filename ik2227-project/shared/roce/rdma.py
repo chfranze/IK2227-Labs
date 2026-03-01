@@ -9,7 +9,6 @@ import sys
 import threading
 import time
 
-from ctypes import c_void_p
 from pyverbs.device import rdma_get_devices
 from pyverbs.enums import *
 
@@ -32,7 +31,6 @@ class QpConnectionData(ctypes.BigEndianStructure):
 
 callback = None
 keep_polling: bool = True
-
 def poll_cq(cq: pyverbs.cq.CQ, mr: pyverbs.mr.MR) -> None:
     global keep_polling
 
@@ -65,16 +63,9 @@ def recvn(sock: socket.socket, n: int) -> bytes:
     logging.info(f"Received {len(data)} bytes from socket")
     return data
 
+# The SoftRoCE interface name is passed as argument
+# The PORT constant is the TCP port where the server is listening
 def read_weights(iface: str) -> bytes:
-    """
-    Establish RDMA connection and read LLama2 weights from llama_weights server.
-    
-    Args:
-        iface: Name of the SoftRoCE interface (e.g., 'rxe1')
-    
-    Returns:
-        bytes: The LLama2 weights read from remote memory
-    """
     # Step 1: Verify RDMA device exists
     logging.info(f"Searching for RDMA device: {iface}")
     devices_list = rdma_get_devices()
@@ -110,33 +101,43 @@ def read_weights(iface: str) -> bytes:
             logging.info("Protection domain created")
             
             # Register memory region for local write access
-            mr = pyverbs.mr.MR(pd, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ)
+            mr = pyverbs.mr.MR(
+                pd, 
+                BUFFER_SIZE, 
+                IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ
+            )
             logging.info(f"Memory registered: addr={mr.buf}, rkey={mr.rkey}, length={BUFFER_SIZE}")
             
-            # Create Completion Queue
-            cq = pyverbs.cq.CQ(ctx, 10)
+            # Create the Completion Queue
+            # The capacity is 10 CQE
+            cq = pyverbs.cq.CQ(ctx, 10, None, None, 0)
             logging.info("Completion Queue created")
             
-            # Create Queue Pair
+            # Configure and initialize the Queue Pair
             qp_init_attr = pyverbs.qp.QPInitAttr(
-                qp_type=IBV_QPT_RC,
-                scq=cq,
-                rcq=cq,
+                qp_type=IBV_QPT_RC,       # Type of QP (RC=Reliable Connection)
+                scq=cq,                   # CQ to associate with the Send Queue
+                rcq=cq,                   # CQ to associate with the Receive Queue
                 cap=pyverbs.qp.QPCap(
-                    max_send_wr=1,
-                    max_recv_wr=1,
-                    max_send_sge=1,
-                    max_recv_sge=1
+                    max_send_wr=8192, # Max num of outstanding WRs that can be posted to the Send Queue (varies per RNIC)
+                    max_recv_wr=8192, # Max num of outstanding WRs that can be posted to the Receive Queue (varies per RNIC)
+                    max_send_sge=32,  # Max num of scatter/gather elements in any WR that can be posted to the Send Queue (varies per RNIC)
+                    max_recv_sge=32   # Max num of scatter/gather elements in any WR that can be posted to the Receive Queue (varies per RNIC)
                 )
             )
+            # Create the QP
             qp = pyverbs.qp.QP(pd, qp_init_attr)
             logging.info(f"QP created with qp_num={qp.qp_num}")
             
             # Step 4: Transition QP to INIT state
-            init_attr = pyverbs.qp.QPAttr(qp_state=IBV_QPS_INIT, port_num=1)
-            init_attr.pkey_index = 0
+            init_attr = pyverbs.qp.QPAttr(
+                qp_state=IBV_QPS_INIT, 
+                port_num=1
+            )
+            init_attr.pkey_index = 0 # Set the default partition keys table for this QP
             init_attr.qp_access_flags = IBV_ACCESS_REMOTE_READ | IBV_ACCESS_LOCAL_WRITE
             
+            # Move the QP in the INIT state
             qp.modify(
                 init_attr,
                 IBV_QP_STATE | IBV_QP_PKEY_INDEX | IBV_QP_PORT | IBV_QP_ACCESS_FLAGS
