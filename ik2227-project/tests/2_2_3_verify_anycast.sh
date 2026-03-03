@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ROUTER="as100r1"
+ROUTER2="as30r1"
 CLIENT="client_int"
 TEST_IP="10.30.40.2"
 HOSTS=("clustera.com" "clusterb.com")
@@ -45,10 +46,15 @@ else
     echo "✔ DNS works via primary"
 fi
 
-# Step 3: Bring down eth0 on the router
+# Step 3: Bring down eth0 on the as100r1 and as30r1 router
+# Note: To break the connection, you need to run ip link set <iface> down on both sides of the link!
 echo
 echo "Bringing down $ROUTER eth0..."
 kathara exec "$ROUTER" "ip link set eth0 down"
+
+echo
+echo "Bringing down $ROUTER2 eth0..."
+kathara exec "$ROUTER2" "ip link set eth0 down"
 
 # Wait 5 seconds for BGP converge
 sleep 5
@@ -95,3 +101,10 @@ fi
 echo
 echo "Restoring $ROUTER eth0..."
 kathara exec "$ROUTER" "ip link set eth0 up"
+
+echo
+echo "Restoring $ROUTER2 eth0..."
+kathara exec "$ROUTER2" "ip link set eth0 up"
+
+# Wait 5 seconds for BGP converge
+sleep 5

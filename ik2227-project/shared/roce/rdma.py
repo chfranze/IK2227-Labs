@@ -48,7 +48,7 @@ def poll_cq(cq: pyverbs.cq.CQ, mr: pyverbs.mr.MR) -> None:
                     if callback is not None:
                         callback(mr.read(length=BUFFER_SIZE, offset=0))
                     keep_polling = False
-        time.sleep(0.01)
+                    
     logging.info("CQ poller exiting")
 
 def recvn(sock: socket.socket, n: int) -> bytes:
