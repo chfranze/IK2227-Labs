@@ -58,12 +58,14 @@ def recvn(sock: socket.socket, n: int) -> bytes:
 
 # The SoftRoCE interface name is passed as argument
 # The PORT constant is the TCP port where the server is listening
-def read_weights(iface: str) -> None:
+def read_weights(iface: str) -> bytes:
     # Get all available RDMA-compatible devices
     devices_list = pyverbs.device.rdma_get_devices()
     found = False
     for device in devices_list:
         # device.name is of "byte" type, let's convert to string
+        if device.name is None:
+            continue
         device_name_str = device.name.decode('utf-8')
         if device_name_str == iface:
             found = True
@@ -77,8 +79,8 @@ def read_weights(iface: str) -> None:
         sock.connect(("3.0.0.1", PORT))
     except Exception as ex:
         print(f"Error connecting to server: {ex}", file=sys.stderr)
-        # sys.exit(1)
-        sock.close()
+        sock.close() #
+        raise #
 
     try:
         # 2. Setup RDMA Resources 

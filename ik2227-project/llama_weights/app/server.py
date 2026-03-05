@@ -140,6 +140,8 @@ def main(iface: str) -> None:
     devices_list = rdma_get_devices()
     found = False
     for device in devices_list:
+        if device.name is None: #
+            continue #
         device_name_str = device.name.decode('utf-8')
         if device_name_str == iface:
             found = True
