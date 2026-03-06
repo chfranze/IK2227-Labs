@@ -172,3 +172,24 @@ or
 curl -X POST -H "Content-Type: application/json" \
 -d '{"query":"An orc wanted to destroy everything"}' \
 http://clusterb.com/completion
+
+
+11. Other stuff and checks
+
+- check routing table: Verify BGP Adjacencies (Run on Cores, Spines, and Leafs)
+
+kathara connect core_1_1
+vtysh -c "show ip bgp summary"
+
+- check multipath installation:
+
+kathara exec leaf_1_1 -- ip route
+kathara exec leaf_1_1 -- vtysh -c "show ip route"
+
+- Verify EVPN Route Distribution (Run on Leafs):
+
+kathara exec leaf_1_1 -- vtysh -c "show bgp l2vpn evpn"
+
+- Verify Local MAC Forwarding Database (FDB) (Run on Leafs):
+
+kathara exec leaf_1_1 -- bridge fdb show | grep vtep
